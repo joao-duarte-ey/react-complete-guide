@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
+    const [isAdding, setIsAdding] = useState(false);
+
     const [newTitle, SetNewTitle] = useState('');
 
     const titleChangeHandler = (event) =>{
@@ -32,6 +34,17 @@ const ExpenseForm = (props) => {
         SetNewTitle('');
         SetNewAmount('');
         SetNewDate('');
+        setIsAdding((prevIsAdding) => !prevIsAdding)
+    }
+
+    const toggleHandler = () =>{
+        setIsAdding((prevIsAdding) => !prevIsAdding);
+    }
+
+    if(isAdding === false){
+        return(
+            <button onClick={toggleHandler}>Add New Expense</button>
+        )
     }
 
     return(
